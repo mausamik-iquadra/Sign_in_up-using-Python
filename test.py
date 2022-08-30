@@ -1,13 +1,25 @@
+#code by Mausami 
+
+#Test cases for account creation
+
+#TEST CASES
+## if account already exists -- no entry added 
+## login if account exists
+## if account doesn't exist -- signup (before sign up check for all validation cases )
+## if account doesn't exist -- but username doesn't follow test cases -- account cannot be created -- try creating again 
 
 
-from urllib.parse import uses_relative
+#Username test cases 
+## Lower ## Upper ## len > 6 ## Digits 
+
+
 import mysql.connector as sql
 from mysql.connector import Error
 from mysql.connector import errorcode
 import re
 
 try:
-#connect to mysql using the connect() with following parameters 
+#connect to mysql using the connect() with following parameters(own mysql credentials ) 
     connection = sql.connect(host='localhost',database='testpython',user='root', password='1234')
     print("Connection established")
 
@@ -27,8 +39,7 @@ curs = connection.cursor()
 def signup(u,p):
     curs.execute('Select * from users where name = %s  and password = %s ', (u,p))
     acc = curs.fetchone()
-    v = Authenticate(u)
-
+    
     # if account already exits 
     if acc:
         print('Account exists already')
@@ -108,13 +119,6 @@ print("Enter Password : ")
 pas = input() 
 
 v = Authenticate(user_name)
-
-
-'''while(v.validate()):
-    print("Enter Username : ")
-    user_name = input()
-    print("Enter Password : ")
-    pas = input()   '''
 
 
 print("Do you already have account ? (Y/ N) ")
